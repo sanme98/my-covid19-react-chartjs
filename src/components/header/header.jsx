@@ -51,7 +51,7 @@ const Header = () => {
                     {/*--------------------------------------------------------------------------------*/}
                     {/* Logos Or Icon will be goes here for Light Layout && Dark Layout                */}
                     {/*--------------------------------------------------------------------------------*/}
-                    <NavbarBrand href="/">
+                    <NavbarBrand href="./">
                         <b className="logo-icon">
                             <img width="40px" src={logodarkicon} alt="homepage" className="dark-logo" />
                             <img
