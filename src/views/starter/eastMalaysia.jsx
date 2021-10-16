@@ -213,7 +213,7 @@ const EastMalaysia = () => {
                                     >
                                         Total cases
                                     </CardTitle>
-                                    <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'blue' }} end={state.totalCases} separator=","  decimals={0}  decimal="," duration={3} />
+                                    <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'blue' }} end={state.totalCases} separator=","  decimals={0}  decimal="," duration={2} />
                                 </div>
                                 <Col className="col-auto">
                                     <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -238,7 +238,7 @@ const EastMalaysia = () => {
                                     <span className="h3 font-weight-bold mb-0" style={{ color: 'red' }}>
                                         <i className="fas fa-arrow-up" />
                                     </span>
-                                    <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'red' }} end={state.newCases} separator=","  decimals={0}  decimal="," duration={3} />                                        
+                                    <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'red' }} end={state.newCases} separator=","  decimals={0}  decimal="," duration={2} />                                        
                                 </div>
                                 <Col className="col-auto">
                                     <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
