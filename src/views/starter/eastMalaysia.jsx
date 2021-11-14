@@ -290,7 +290,7 @@ const EastMalaysia = () => {
                 </Col>
             </Row>
             <Row>
-                <Col sm={12}>
+                <Col sm={12} style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                     <Bar ref={chartRef} data={data} options={option} className="mb-xl-4" />
                 </Col>
             </Row>
