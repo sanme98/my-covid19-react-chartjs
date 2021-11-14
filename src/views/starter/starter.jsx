@@ -268,11 +268,11 @@ const Starter = () => {
                     </div>
                 </Col>
                 <Col lg={5} md={12} className="text-right">
-                    <Button color="primary" onClick={() => handleData()} style={{ marginRight: '3px'}}>All</Button>
-                    <Button color="primary" onClick={() => handleData(6)} style={{ marginRight: '3px'}}>6 Months</Button>
-                    <Button color="primary" onClick={() => handleData(3)} style={{ marginRight: '3px'}}>3 Months</Button>
-                    <Button onClick={resetZoom} style={{ marginRight: '3px'}}>Reset zoom</Button>
-                    <Button color="warning" disabled={isSending} onClick={reload}>Reload</Button>
+                    <Button color="primary" onClick={() => handleData()} style={{ marginRight: '3px', 'marginTop': '2px'}}>All</Button>
+                    <Button color="primary" onClick={() => handleData(6)} style={{ marginRight: '3px', 'marginTop': '2px'}}>6 Months</Button>
+                    <Button color="primary" onClick={() => handleData(3)} style={{ marginRight: '3px', 'marginTop': '2px'}}>3 Months</Button>
+                    <Button onClick={resetZoom} style={{ marginRight: '3px', 'marginTop': '2px'}}>Reset zoom</Button>
+                    <Button color="warning" disabled={isSending} onClick={reload} style={{ 'marginTop': '2px'}}>Reload</Button>
                 </Col>
             </Row>
             <Row>
