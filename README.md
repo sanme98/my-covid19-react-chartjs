@@ -14,6 +14,9 @@
 <li>  
   Live Demo: <a href="https://sanme98.github.io/my-covid19-react-chartjs/" target="_blank">https://sanme98.github.io/my-covid19-react-chartjs/</a>
 </li>
+<li>
+  Some brief explanation: <a href="https://mycsharpdeveloper.wordpress.com/2021/10/16/malaysia-covid-19-daily-new-cases-using-react-hook-and-chart-js/" target="_blank">Malaysia Covid-19 Daily New Cases using React Hooks and Chart.js</a>
+</li>
 </ul>
 
 <!-- Licensing of Template -->

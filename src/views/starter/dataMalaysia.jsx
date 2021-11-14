@@ -121,28 +121,41 @@ function AdvancedTable({ columns, data }) {
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
       */}
-            <div className="form-inline">
-                <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage} style={{ marginRight: '3px' }}>
-                    {'<<'}
-                </Button>{' '}
-                <Button onClick={() => previousPage()} disabled={!canPreviousPage} style={{ marginRight: '3px' }}>
-                    {'<'}
-                </Button>{' '}
-                <Button onClick={() => nextPage()} disabled={!canNextPage} style={{ marginRight: '3px' }}>
-                    {'>'}
-                </Button>{' '}
-                <Button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} style={{ marginRight: '3px' }}>
-                    {'>>'}
-                </Button>{' '}
-                <span style={{ marginRight: '3px' }}>
-                    Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>
-                </span>
-                <Col>
-                    <FormGroup>
-                        <Label for="pageNo">Go to page:</Label>
+            <div style={{ 'display': 'flex', 'flexFlow': 'row wrap', 'rowGap': '3px' }}>
+                <div style={{ 'display': 'flex', 'flexFlow': 'row', 'columnGap': '3px' }}>
+                    <div>
+                        <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                            {'<<'}
+                        </Button>
+                    </div>
+                    <div>
+                        <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                            {'<'}
+                        </Button>
+                    </div>
+                    <div>
+                        <Button onClick={() => nextPage()} disabled={!canNextPage}>
+                            {'>'}
+                        </Button>
+                    </div>
+                    <div>
+                        <Button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                            {'>>'}
+                        </Button></div>
+                    <div style={{ 'paddingTop': '8px' }}>
+                        <span style={{ marginRight: '3px', 'whiteSpace': 'pre' }}>
+                            Page{' '}
+                            <strong>
+                                {pageIndex + 1} of {pageOptions.length}
+                            </strong>
+                        </span>
+                    </div>
+                </div>
+                <div style={{ 'display': 'flex', 'flexFlow': 'row' }}>
+                    <div style={{ 'paddingTop': '8px', 'marginRight': '3px' }}>
+                        <Label for="pageNo" style={{'whiteSpace': 'pre'}}>Go to page:</Label>
+                    </div>
+                    <div style={{'width': '75px', 'marginRight': '3px'}}>
                         <Input
                             type="number"
                             defaultValue={pageIndex + 1}
@@ -150,23 +163,24 @@ function AdvancedTable({ columns, data }) {
                                 const page = e.target.value ? Number(e.target.value) - 1 : 0
                                 gotoPage(page)
                             }}
-                            style={{ width: '100px' }}
                             id="pageNo"
                         />
-                    </FormGroup>
-                </Col>
-                <Input type="select"
-                    value={pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[10, 20, 50, 100].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </Input>
+                    </div>
+                </div>
+                <div style={{'width': '125px'}}>
+                    <Input type="select"
+                        value={pageSize}
+                        onChange={e => {
+                            setPageSize(Number(e.target.value))
+                        }}
+                    >
+                        {[10, 20, 50, 100].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </Input>
+                </div>
             </div>
         </>
     )

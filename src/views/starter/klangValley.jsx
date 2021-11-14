@@ -42,6 +42,7 @@ const KlangValley = () => {
             let last2DayNewCases = last2DayNewCasesKV.map(item => parseInt(item.cases_new) || 0).reduce((prev, curr) => prev + curr, 0);
             let changes = (newCases - last2DayNewCases) / last2DayNewCases * 100;
 
+            /*
             let accumulativeCases = [];
             let accumulateAmount = 0;
             for (var num = 0; num < cases.length; num++) {
@@ -54,11 +55,37 @@ const KlangValley = () => {
                 console.warn("Error in Accumulate cases calculation. It will not display!");
                 accumulativeCases = [];
             }
+            */
 
-            setState({ allCases: casesKV, casesKV, cases, dates, totalCases, newCases, changes, lastUpdate, accumulativeCases });
+            const resDeaths = await fetch('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/deaths_state.csv')
+                .then(response => response.text())
+                .then(v => Papa.parse(v, { header: true, skipEmptyLines: true }))
+                .catch(err => console.log(err));
+
+            const allCasesDeath = resDeaths.data.filter(a => a.state === "Selangor" || a.state === "W.P. Kuala Lumpur" || a.state === "W.P. Putrajaya");
+            const allGroupCasesDeath = groupBy(allCasesDeath, 'date');
+            let sumDeath = Object.fromEntries(Object.entries(allGroupCasesDeath).map(([k, v]) => [k, 
+                v.reduce(function (prev, curr) { return parseInt(prev) + parseInt(curr.deaths_new_dod); }, 0)]));
+
+            let casesDeath = Object.values(sumDeath);
+            let missingDay = new Array(52).fill(0);
+            if (dates.length/3 !== casesDeath.length + missingDay.length) {
+                console.warn("Error in Death cases calculation. It will not display!");
+                casesDeath = [];
+                missingDay = [];
+            }
+
+            setState({ allCases: casesKV, casesKV, cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
         }
         getData();
     }, []);
+
+    const groupBy = function (xs, key) {
+        return xs.reduce(function (rv, x) {
+            (rv[x[key]] = rv[x[key]] || []).push(x);
+            return rv;
+        }, {});
+    };
 
     const data = () => {
         const casesSelangor = state.casesKV != null ? state.casesKV.filter(a => a.state === "Selangor").map(a => a.cases_new) : [];
@@ -69,11 +96,20 @@ const KlangValley = () => {
         return {
             labels: dates,
             datasets: [
+                /*
                 {
                     type: 'line',
                     label: 'Accumulate Cases',
                     //backgroundColor: "#666666",
                     data: state.accumulativeCases,
+                    yAxisID: 'Line',
+                },
+                */
+                {
+                    type: 'line',
+                    label: '# of Death',
+                    backgroundColor: "#666666",
+                    data: state.casesDeath,
                     yAxisID: 'Line',
                 },
                 {
@@ -103,16 +139,20 @@ const KlangValley = () => {
     };
 
     const handleData = (month) => {
-        let casesKV;
+        let casesKV, allCasesDeath, missingDay;
         let d = new Date();
         if (month === undefined)
         {
             casesKV = state.allCases;
+            allCasesDeath = state.allCasesDeath;
+            missingDay = new Array(52).fill(0);
         }
         else 
         {
             d.setMonth(d.getMonth() - month);
             casesKV = state.allCases.filter(a => a.date >= d.toISOString().substr(0, 10));
+            allCasesDeath = state.allCasesDeath.filter(a => a.date >= d.toISOString().substr(0, 10));
+            missingDay = [];
         }
 
         const dates = casesKV.map(a => a.date);
@@ -127,6 +167,7 @@ const KlangValley = () => {
         let last2DayNewCases = last2DayNewCasesKV.map(item => parseInt(item.cases_new) || 0).reduce((prev, curr) => prev + curr, 0);
         let changes = (newCases - last2DayNewCases) / last2DayNewCases * 100;
 
+        /*
         let accumulativeCases = [];
         let accumulateAmount = 0;
         for (var num = 0; num < cases.length; num++) {
@@ -139,8 +180,20 @@ const KlangValley = () => {
             console.warn("Error in Accumulate cases calculation. It will not display!");
             accumulativeCases = [];
         }
+        */
 
-        setState({ allCases: state.allCases, casesKV, cases, dates, totalCases, newCases, changes, lastUpdate, accumulativeCases });
+        const allGroupCasesDeath = groupBy(allCasesDeath, 'date');
+        let sumDeath = Object.fromEntries(Object.entries(allGroupCasesDeath).map(([k, v]) => [k,
+            v.reduce(function (prev, curr) { return parseInt(prev) + parseInt(curr.deaths_new_dod); }, 0)]));
+
+        const casesDeath = Object.values(sumDeath);
+        if (dates.length/3 !== casesDeath.length + missingDay.length) {
+            console.warn("Error in Death cases calculation. It will not display!");
+            casesDeath = [];
+            missingDay = [];
+        }
+
+        setState({ allCases: state.allCases, casesKV, cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath: state.allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
     }
 
     const option = {

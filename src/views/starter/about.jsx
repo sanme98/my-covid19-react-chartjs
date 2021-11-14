@@ -32,13 +32,13 @@ const About = () => {
                     <Card>                        
                         <CardImg top src={img1} />
                         <CardBody>
-                            <p className="lead">This is just another simple site with source code to learn React Hook, Bootstrap, and Chart.js</p>
+                            <p className="lead">This is just another simple site with source code to learn React Hooks, Bootstrap, and Chart.js</p>
                             <CardText>The data for this site is from <a href="https://github.com/MoH-Malaysia/covid19-public" target="_blank">Open data on COVID-19 in Malaysia</a> and this site will do some simple calculations to display the data. Please <a href="https://github.com/sanme98/my-covid19-react-chartjs/issues" target="_blank">report the issue</a> if you found any bugs or miscalculations on this site, or even better, please fork the source code on Github, fix the bugs and contribute to the project.</CardText>
                             <CardTitle>Disclaimer</CardTitle>
                             <CardText>Please visit Covid-19 Data Official site for accurate Covid-19 information. This site is just for educational and learning purposes only. It has not gone through any rigorous QA and testing, so it might still have some bugs or miscalculations.</CardText>
                             <CardTitle>Project Github URL</CardTitle>
                             <CardText><a href="https://github.com/sanme98/my-covid19-react-chartjs" target="_blank">https://github.com/sanme98/my-covid19-react-chartjs</a></CardText>
-                            <CardText>Please head to <a href="https://mycsharpdeveloper.wordpress.com/2021/10/16/malaysia-covid-19-daily-new-cases-using-react-hook-and-chart-js" target="_blank">Malaysia Covid-19 Daily New Cases using React Hook and Chart.js</a> for some brief explanations.</CardText>
+                            <CardText>Please head to <a href="https://mycsharpdeveloper.wordpress.com/2021/10/16/malaysia-covid-19-daily-new-cases-using-react-hook-and-chart-js" target="_blank">Malaysia Covid-19 Daily New Cases using React Hooks and Chart.js</a> for some brief explanations.</CardText>
                             <CardTitle>License</CardTitle>
                             <CardText><a href="https://github.com/sanme98/my-covid19-react-chartjs/blob/master/LICENSE" target="_blank">MIT License</a></CardText>
                             <CardTitle>Credit / Some Libraries Used</CardTitle>
