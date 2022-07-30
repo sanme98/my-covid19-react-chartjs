@@ -38,6 +38,11 @@ License: MIT
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
+/**
+ * @author  Milos Janda
+ * @licence MIT
+ */
+
 /** @license React v0.20.2
  * scheduler.production.min.js
  *
