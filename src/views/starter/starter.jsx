@@ -110,6 +110,7 @@ const Starter = () => {
         maintainAspectRatio: true,
         responsive: true,
         animation: {
+            enabled: !isMobile(),
             duration: isMobile() ? 0 : 1000
         },
         plugins: {
@@ -216,7 +217,10 @@ const Starter = () => {
                                     >
                                         Total cases
                                     </CardTitle>
-                                    <CountUp className="h3 font-weight-bold mb-0"  style={{ color: 'blue' }} end={state.totalCases} separator=","  decimals={0}  decimal="," duration={2} />
+                                    { isMobile() ?
+                                        <span className="h3 font-weight-bold mb-0"  style={{ color: 'blue' }}>{parseInt(state.totalCases).toLocaleString()}</span> : 
+                                        <CountUp className="h3 font-weight-bold mb-0"  style={{ color: 'blue' }} end={state.totalCases} separator=","  decimals={0}  decimal="," duration={2} />
+                                    }
                                 </div>
                                 <Col className="col-auto">
                                     <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -241,7 +245,10 @@ const Starter = () => {
                                     <span className="h3 font-weight-bold mb-0" style={{ color: 'red' }}>
                                         <i className="fas fa-arrow-up" />
                                     </span>
-                                    <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'red' }} end={state.newCases} separator=","  decimals={0}  decimal="," duration={2} />                                        
+                                    { isMobile() ?
+                                        <span className="h3 font-weight-bold mb-0"  style={{ color: 'red' }}>{parseInt(state.newCases).toLocaleString()}</span> : 
+                                        <CountUp className="h3 font-weight-bold mb-0" style={{ color: 'red' }} end={state.newCases} separator=","  decimals={0}  decimal="," duration={2} />                                        
+                                    }
                                 </div>
                                 <Col className="col-auto">
                                     <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -295,7 +302,7 @@ const Starter = () => {
             </Row>
             <Row>
                 <Col sm={12} style={{ paddingLeft: '0px', paddingRight: '0px' }}>
-                    <Bar ref={chartRef} data={data} options={option} className="mb-xl-4" />
+                    <Bar ref={chartRef} data={data} options={option} className="mb-xl-4" height={isMobile() ? 250 : 0} />
                 </Col>
             </Row>
             <Row>
