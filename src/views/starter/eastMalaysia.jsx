@@ -154,11 +154,15 @@ const EastMalaysia = () => {
         },
         maintainAspectRatio: true,
         responsive: true,
+        animation: {
+            duration: 0
+        },
         plugins: {
             zoom: {
                 zoom: {
                     wheel: {
-                        enabled: true // SET SCROOL ZOOM TO TRUE
+                        enabled: true, // SET SCROOL ZOOM TO TRUE
+                        modifierKey: 'shift'
                     },
                     mode: "xy",
                     speed: 50
@@ -286,7 +290,7 @@ const EastMalaysia = () => {
                     <Button color="primary" onClick={() => handleData()} style={{ marginRight: '3px'}}>All</Button>
                     <Button color="primary" onClick={() => handleData(6)} style={{ marginRight: '3px'}}>6 Months</Button>
                     <Button color="primary" onClick={() => handleData(3)} style={{ marginRight: '3px'}}>3 Months</Button>
-                    <Button onClick={resetZoom}>Reset zoom</Button>
+                    <Button title="Shift key to zoom" onClick={resetZoom}>Reset zoom</Button>
                 </Col>
             </Row>
             <Row>

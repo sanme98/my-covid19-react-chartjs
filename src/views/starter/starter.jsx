@@ -19,13 +19,13 @@ import TableCovid from "../ui-components/tableCovid";
 
 
 const Starter = () => {
-    const [state, setState] = React.useState({allCases: null, last14Cases: null, cases: [], dates: [], totalCases: 0, newCases: 0, changes: 0, lastUpdate: null});
+    const [state, setState] = React.useState({allCases: null, last30Cases: null, cases: [], dates: [], totalCases: 0, newCases: 0, changes: 0, lastUpdate: null});
     const [isSending, setIsSending] = React.useState(false);
     const chartRef = React.useRef(null);
 
     async function getData() {
         const response = await fetch('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_malaysia.csv')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(v => Papa.parse(v, { header: true, skipEmptyLines: true }))
             .catch(err => console.log(err));
 
@@ -37,10 +37,10 @@ const Starter = () => {
         const newCases = parseInt(cases[cases.length - 1]);
         const last2DayNewCases = parseInt(cases[cases.length - 2]);
         const changes = (newCases - last2DayNewCases) / last2DayNewCases * 100;
-        const last14Cases = allCases.slice(-14);
+        const last30Cases = allCases.slice(-30);
 
         const resDeaths = await fetch('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/deaths_malaysia.csv')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(v => Papa.parse(v, { header: true, skipEmptyLines: true }))
             .catch(err => console.log(err));
 
@@ -53,7 +53,12 @@ const Starter = () => {
             missingDay = [];
         }
 
-        setState({ allCases, last14Cases, cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
+        for (let index = 0; index < 30; index++) {
+            const death = allCasesDeath[allCasesDeath.length - 1 - index];
+            last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+        }
+
+        setState({ allCases, last30Cases: last30Cases.reverse(), cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
     }
 
     React.useEffect(() => {
@@ -100,11 +105,15 @@ const Starter = () => {
         },
         maintainAspectRatio: true,
         responsive: true,
+        animation: {
+            duration: window.screen.width <= 760 ? 0 : 1000
+        },
         plugins: {
             zoom: {
                 zoom: {
                     wheel: {
-                        enabled: true // SET SCROOL ZOOM TO TRUE
+                        enabled: true, // SET SCROOL ZOOM TO TRUE
+                        modifierKey: 'shift'
                     },
                     mode: "xy",
                     speed: 50
@@ -148,16 +157,21 @@ const Starter = () => {
         const newCases = parseInt(cases[cases.length - 1]);
         const last2DayNewCases = parseInt(cases[cases.length - 2]);
         const changes = (newCases - last2DayNewCases) / last2DayNewCases * 100;
-        const last14Cases = allCases.slice(-14);
+        const last30Cases = allCases.slice(-30);
 
-        const casesDeath = allCasesDeath.map(a => a.deaths_new_dod);
+        let casesDeath = allCasesDeath.map(a => a.deaths_new_dod);
         if (dates.length !== casesDeath.length + missingDay.length) {
             console.warn("Error in Death cases calculation. It will not display!");
             casesDeath = [];
             missingDay = [];
         }
 
-        setState({ allCases: state.allCases, last14Cases, cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath: state.allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
+        for (let index = 0; index < 30; index++) {
+            const death = allCasesDeath[allCasesDeath.length - 1 - index];
+            last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+        }
+
+        setState({ allCases: state.allCases, last30Cases: last30Cases.reverse(), cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath: state.allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
     }
 
     return (
@@ -271,7 +285,7 @@ const Starter = () => {
                     <Button color="primary" onClick={() => handleData()} style={{ marginRight: '3px', 'marginTop': '2px'}}>All</Button>
                     <Button color="primary" onClick={() => handleData(6)} style={{ marginRight: '3px', 'marginTop': '2px'}}>6 Months</Button>
                     <Button color="primary" onClick={() => handleData(3)} style={{ marginRight: '3px', 'marginTop': '2px'}}>3 Months</Button>
-                    <Button onClick={resetZoom} style={{ marginRight: '3px', 'marginTop': '2px'}}>Reset zoom</Button>
+                    <Button title="Shift key to zoom" onClick={resetZoom} style={{ marginRight: '3px', 'marginTop': '2px'}}>Reset zoom</Button>
                     <Button color="warning" disabled={isSending} onClick={reload} style={{ 'marginTop': '2px'}}>Reload</Button>
                 </Col>
             </Row>
@@ -282,7 +296,7 @@ const Starter = () => {
             </Row>
             <Row>
                 <Col sm={12}>
-                    <TableCovid data={state.last14Cases} />
+                    <TableCovid data={state.last30Cases} />
                 </Col>
             </Row>
             <Row>

@@ -5,6 +5,7 @@ import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routing.jsx';
 import DataMalaysia from '../views/starter/dataMalaysia.jsx';
+import ScrollToTop from 'react-scroll-up';
 
 const Fulllayout = (props) => {
     /*--------------------------------------------------------------------------------*/
@@ -55,47 +56,55 @@ const Fulllayout = (props) => {
     /* Theme Setting && Layout Options wiil be Change From Here                       */
     /*--------------------------------------------------------------------------------*/
     return (
-        <div
-            id="main-wrapper"
-            data-theme="light"
-            data-layout="vertical"
-            data-sidebartype="full"
-            data-sidebar-position="fixed"
-            data-header-position="fixed"
-            data-boxed-layout="full"
-        >
-            {/*--------------------------------------------------------------------------------*/}
-            {/* Header                                                                         */}
-            {/*--------------------------------------------------------------------------------*/}
-            <Header />
-            {/*--------------------------------------------------------------------------------*/}
-            {/* Sidebar                                                                        */}
-            {/*--------------------------------------------------------------------------------*/}
-            <Sidebar {...props} routes={ThemeRoutes} />
-            {/*--------------------------------------------------------------------------------*/}
-            {/* Page Main-Content                                                              */}
-            {/*--------------------------------------------------------------------------------*/}
-            <div className="page-wrapper d-block">
-                <div className="page-content container-fluid">
-                    <Switch>
-                        <Route path="/DataMalaysia">
-                            <DataMalaysia />
-                        </Route>
-                        {ThemeRoutes.map((prop, key) => {
-                            if (prop.redirect) {
-                                return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
-                            }
-                            else {
-                                return (
-                                    <Route path={prop.path} component={prop.component} key={key} />
-                                );
-                            }
-                        })}
-                    </Switch>
-                </div>
-                <Footer />
-            </div>
+      <div
+        id="main-wrapper"
+        data-theme="light"
+        data-layout="vertical"
+        data-sidebartype="full"
+        data-sidebar-position="fixed"
+        data-header-position="fixed"
+        data-boxed-layout="full"
+      >
+        {/*--------------------------------------------------------------------------------*/}
+        {/* Header                                                                         */}
+        {/*--------------------------------------------------------------------------------*/}
+        <Header />
+        {/*--------------------------------------------------------------------------------*/}
+        {/* Sidebar                                                                        */}
+        {/*--------------------------------------------------------------------------------*/}
+        <Sidebar {...props} routes={ThemeRoutes} />
+        {/*--------------------------------------------------------------------------------*/}
+        {/* Page Main-Content                                                              */}
+        {/*--------------------------------------------------------------------------------*/}
+        <div className="page-wrapper d-block">
+          <div className="page-content container-fluid">
+            <Switch>
+              <Route path="/DataMalaysia">
+                <DataMalaysia />
+              </Route>
+              {ThemeRoutes.map((prop, key) => {
+                if (prop.redirect) {
+                  return (
+                    <Redirect from={prop.path} to={prop.pathTo} key={key} />
+                  );
+                } else {
+                  return (
+                    <Route
+                      path={prop.path}
+                      component={prop.component}
+                      key={key}
+                    />
+                  );
+                }
+              })}
+            </Switch>
+            <ScrollToTop showUnder={160} style={{bottom: 30}}>
+                <i className="far fa-arrow-alt-circle-up" style={{fontSize: "40px"}}></i>
+            </ScrollToTop>
+          </div>
+          <Footer />
         </div>
+      </div>
     );
 }
 export default Fulllayout;
