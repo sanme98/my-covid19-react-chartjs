@@ -244,6 +244,10 @@ const WestMalaysia = () => {
         setState({ allCases: state.allCases, casesKV, cases, dates, totalCases, newCases, changes, lastUpdate, accumulativeCases });
     }
 
+    const isMobile = () => {
+        return window.screen.width <= 760;
+    }
+
     const option = {
         scales: {
             x: {
@@ -269,7 +273,7 @@ const WestMalaysia = () => {
                     speed: 50
                 },
                 pan: {
-                    enabled: true,
+                    enabled: !isMobile(),
                     mode: "xy",
                     speed: 50
                 }
@@ -403,7 +407,7 @@ const WestMalaysia = () => {
                     <Button color="primary" onClick={() => handleData()} style={{ marginRight: '3px'}}>All</Button>
                     <Button color="primary" onClick={() => handleData(6)} style={{ marginRight: '3px'}}>6 Months</Button>
                     <Button color="primary" onClick={() => handleData(3)} style={{ marginRight: '3px'}}>3 Months</Button>
-                    <Button title="Shift key to zoom" onClick={resetZoom}>Reset zoom</Button>
+                    <Button title="Shift key to zoom" onClick={resetZoom} style={{display: isMobile() ? 'none' : 'inline-block' }}>Reset zoom</Button>
                 </Col>
             </Row>
             <Row>
