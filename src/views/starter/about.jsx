@@ -54,7 +54,8 @@ const About = () => {
                                 <ListGroupItem><a href="https://github.com/reactchartjs/react-chartjs-2" target="_blank">react-chartjs-2</a></ListGroupItem>
                                 <ListGroupItem><a href="https://github.com/glennreyes/react-countup" target="_blank">react-countup</a></ListGroupItem>
                                 <ListGroupItem><a href="https://github.com/Bunlong/react-papaparse" target="_blank">react-papaparse</a></ListGroupItem>
-                                <ListGroupItem><a href="https://react-table.tanstack.com/" target="_blank">react-table</a></ListGroupItem>                             
+                                <ListGroupItem><a href="https://react-table.tanstack.com/" target="_blank">react-table</a></ListGroupItem>
+                                <ListGroupItem><a href="https://github.com/milosjanda/react-scroll-up#readme" target="_blank">react-scroll-up</a></ListGroupItem>                             
                                 <ListGroupItem>...</ListGroupItem>
                             </ListGroup>
                         </CardBody>

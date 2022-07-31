@@ -107,6 +107,7 @@ const Starter = () => {
                 position: 'right',
             }
         },
+        //normalized: true,
         maintainAspectRatio: true,
         responsive: true,
         animation: {
@@ -289,7 +290,7 @@ const Starter = () => {
             <Row>
                 <Col lg={7} md={12}>
                     <div className='header'>
-                        <h1 className='title'>Malaysia Covid 19 Daily New Cases</h1>
+                        <h2 className='title'>Malaysia Covid 19 Daily New Cases</h2>
                     </div>
                 </Col>
                 <Col lg={5} md={12} className="text-right">

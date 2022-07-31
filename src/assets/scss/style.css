@@ -11972,7 +11972,8 @@ ul.list-style-none li a:hover {
     height: 100%;
 }
 
-/*# sourceMappingURL=styles.min.css.map*/
+/* Temporary disable due to CRA with Webpack 5 issue - https://stackoverflow.com/questions/70599784/failed-to-parse-source-map */
+/*#- sourceMappingURL=styles.min.css.map*/
 /*******************
 Preloader
 ********************/
