@@ -61,8 +61,8 @@ const Header = () => {
                                 className="light-logo"
                             />
                         </b>
-                        <span className="logo-text font-weight-bold" style={{ color: 'red' }}>
-                            Covid 19 Malaysia
+                        <span className="logo-text font-weight-bold text-danger">
+                            Covid-19 Malaysia
                         </span>
                     </NavbarBrand>
                     {/*--------------------------------------------------------------------------------*/}
@@ -73,7 +73,7 @@ const Header = () => {
                     </button>
                 </div>
                 <Collapse className="navbarbg" navbar data-navbarbg="skin1" >
-                    <h3 style={{ color: 'gold', marginLeft: 10 }}>Malaysia Covid 19 using React and Chart.js</h3>
+                    <h3 className='ml-4' style={{color: 'gold'}}>Malaysia Covid-19 using React and Chart.js</h3>
                     <Nav className="ml-auto float-right" navbar>
                         {/*--------------------------------------------------------------------------------*/}
                         {/* Start Profile Dropdown                                                         */}

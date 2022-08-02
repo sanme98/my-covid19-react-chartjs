@@ -1,6 +1,6 @@
 import Fulllayout from '../layouts/fulllayout.jsx';
 
-var indexRoutes = [
+const indexRoutes = [
     { path: '/', name: 'Starter', component: Fulllayout }
 ];
 

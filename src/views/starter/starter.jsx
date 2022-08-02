@@ -52,10 +52,11 @@ const Starter = () => {
             casesDeath = [];
             missingDay = [];
         }
-
-        for (let index = 0; index < 30; index++) {
-            const death = allCasesDeath[allCasesDeath.length - 1 - index];
-            last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+        else {
+            for (let index = 0; index < 30; index++) {
+                const death = allCasesDeath[allCasesDeath.length - 1 - index];
+                last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+            }
         }
 
         setState({ allCases, last30Cases: last30Cases.reverse(), cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
@@ -171,10 +172,11 @@ const Starter = () => {
             casesDeath = [];
             missingDay = [];
         }
-
-        for (let index = 0; index < 30; index++) {
-            const death = allCasesDeath[allCasesDeath.length - 1 - index];
-            last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+        else {
+            for (let index = 0; index < 30; index++) {
+                const death = allCasesDeath[allCasesDeath.length - 1 - index];
+                last30Cases[30 - 1 - index].deaths_new_dod = death.deaths_new_dod;
+            }
         }
 
         setState({ allCases: state.allCases, last30Cases: last30Cases.reverse(), cases, dates, totalCases, newCases, changes, lastUpdate, allCasesDeath: state.allCasesDeath, casesDeath: [...missingDay, ...casesDeath] });
@@ -290,7 +292,7 @@ const Starter = () => {
             <Row>
                 <Col lg={7} md={12}>
                     <div className='header'>
-                        <h2 className='title'>Malaysia Covid 19 Daily New Cases</h2>
+                        <h2 className='title'>Malaysia Covid-19 Daily New Cases</h2>
                     </div>
                 </Col>
                 <Col lg={5} md={12} className="text-right">

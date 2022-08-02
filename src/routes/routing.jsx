@@ -3,9 +3,8 @@ import KlangValley from '../views/starter/klangValley.jsx';
 import EastMalaysia from '../views/starter/eastMalaysia.jsx';
 import WestMalaysia from '../views/starter/westMalaysia.jsx';
 import Starter from '../views/starter/starter.jsx';
-import DataMalaysia from '../views/starter/dataMalaysia.jsx';
 
-var ThemeRoutes = [
+const ThemeRoutes = [
   { 
     path: '/dashboard', 
     name: 'Malaysia', 
@@ -30,12 +29,6 @@ var ThemeRoutes = [
     icon: 'mdi mdi-apps',
     component: WestMalaysia,
   },
-  /*{
-    path: '/DataMalaysia',
-    name: 'Data Malaysia',
-    icon: 'mdi mdi-apps',
-    component: DataMalaysia,
-  },*/
   {
     path: '/About',
     name: 'About',

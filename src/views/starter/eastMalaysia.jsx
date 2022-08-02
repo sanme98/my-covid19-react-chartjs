@@ -24,7 +24,7 @@ const EastMalaysia = () => {
         Chart.register(zoomPlugin);
         async function getData() {
             const response = await fetch('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/cases_state.csv')
-                .then(response => response.text())
+                .then(res => res.text())
                 .then(v => Papa.parse(v, { header: true, skipEmptyLines: true }))
                 .catch(err => console.log(err));
 
@@ -44,7 +44,7 @@ const EastMalaysia = () => {
 
             let accumulativeCases = [];
             let accumulateAmount = 0;
-            for (var num = 0; num < cases.length; num++) {
+            for (let num = 0; num < cases.length; num++) {
                 accumulateAmount += parseInt(cases[num]);
                 if (num !== 0 && (num + 1) % 3 === 0) {
                     accumulativeCases.push(accumulateAmount);
@@ -126,7 +126,7 @@ const EastMalaysia = () => {
 
         let accumulativeCases = [];
         let accumulateAmount = 0;
-        for (var num = 0; num < cases.length; num++) {
+        for (let num = 0; num < cases.length; num++) {
             accumulateAmount += parseInt(cases[num]);
             if (num !== 0 && (num + 1) % 3 === 0) {
                 accumulativeCases.push(accumulateAmount);
@@ -287,7 +287,7 @@ const EastMalaysia = () => {
             <Row>
                 <Col lg={7} md={12}>
                     <div className='header'>
-                        <h1 className='title'>East Malaysia Covid 19 Daily New Cases</h1>
+                        <h2 className='title'>East Malaysia Covid-19 Daily New Cases</h2>
                     </div>
                 </Col>
                 <Col lg={5} md={12} className="text-right">

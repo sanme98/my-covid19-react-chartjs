@@ -58,7 +58,7 @@ const KlangValley = () => {
             */
 
             const resDeaths = await fetch('https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/deaths_state.csv')
-                .then(response => response.text())
+                .then(res => res.text())
                 .then(v => Papa.parse(v, { header: true, skipEmptyLines: true }))
                 .catch(err => console.log(err));
 
@@ -343,7 +343,7 @@ const KlangValley = () => {
             <Row>
                 <Col lg={7} md={12}>
                     <div className='header'>
-                        <h1 className='title'>Klang Valley Covid 19 Daily New Cases</h1>
+                        <h2 className='title'>Klang Valley Covid-19 Daily New Cases</h2>
                     </div>
                 </Col>
                 <Col lg={5} md={12} className="text-right">
